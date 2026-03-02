@@ -1,0 +1,110 @@
+@mixin flexcol($gap: 0rem) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+.createform {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; // dark background
+}
+
+.formcontainer {
+    width: 90%;
+    max-width: 500px; // increased width
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(160, 159, 159, 0.1);
+    @include flexcol(1.5rem);
+    align-items: center;
+
+    h1 {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    form {
+        @include flexcol(1rem);
+        align-items: center;
+        width: 100%;
+
+        label {
+            display: block;
+            width: 100%; // full width
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            background-color: #fff; // white background
+            color: #000; // black text
+            text-align: left;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%; // full width
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            background-color: #fff;
+            color: #000;
+
+
+            &::placeholder {
+                color: #000; // placeholder text is black
+                opacity: 1; // ensure full opacity
+            }
+
+        }
+
+        button.primary {
+            width: 100%; // full width
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 0.75rem;
+            background-color: rgb(201, 26, 96);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+
+            &:hover {
+                background-color: rgb(220, 40, 120);
+            }
+        }
+    }
+}
+
+/* Responsive tweak */
+@media (max-width: 500px) {
+    .formcontainer {
+        width: 95%;
+        padding: 1rem;
+
+        form {
+
+            label,
+            input,
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

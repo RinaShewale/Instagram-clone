@@ -1,0 +1,126 @@
+.connections-page {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background-color: #121212; // dark background for page
+  color: #fff; // default text color
+
+  .followers-section,
+  .following-section {
+    flex: 1;
+    background-color: #1e1e1e; // dark card bg
+    border-radius: 12px;
+    border: 1px solid #333; // subtle border
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); // stronger shadow for dark theme
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #fff; // headings visible on dark
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
+    }
+
+    .user-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #333;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .profile-image {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          display: block;
+          border: 2px solid #fff; // optional highlight
+        }
+
+        .username {
+          font-weight: bold;
+          color: #fff; // text visible on dark
+        }
+      }
+
+      .unfollow-btn {
+        padding: 0.4rem 0.8rem;
+        width: 5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s;
+
+        &.follow-btn {
+          background-color: #4caf50;
+          color: #fff;
+
+          &:hover {
+            background-color: #45a049;
+          }
+        }
+
+        &.unfollow-btn {
+          background-color: #f44336;
+          color: #fff;
+
+          &:hover {
+            background-color: #e53935;
+          }
+        }
+      }
+    }
+
+    .loading {
+      color: #aaa; // subtle text
+      font-style: italic;
+    }
+
+    .empty {
+      color: #777; // subtle text for empty state
+      font-style: italic;
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .connections-page {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+
+    .followers-section,
+    .following-section {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .connections-page {
+    padding: 0.5rem;
+
+    .followers-section,
+    .following-section {
+      padding: 1rem;
+    }
+  }
+}

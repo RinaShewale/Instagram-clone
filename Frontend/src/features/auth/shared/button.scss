@@ -1,0 +1,18 @@
+ button {
+            width: 300px;
+            max-width: 350px;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            outline: none;
+        }
+
+        .primary {
+            background-color: rgb(180, 59, 59);
+            color: whitesmoke;
+            font-weight: 700;
+        }
+
+        button:active {
+            scale: 0.95;
+        }

@@ -1,0 +1,45 @@
+@mixin flexcol($gap: 0rem) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+
+main {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.form-container {
+    height: fit-content;
+   @include flexcol(1rem);
+
+    h1 {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    form {
+       @include flexcol(1rem);
+
+        input {
+            width: 300px;
+            max-width: 350px;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            outline: none;
+        }
+
+    }
+
+
+     .toggle-auth-form {
+            text-decoration: none;
+            color: rgb(180, 59, 59);
+        }
+}

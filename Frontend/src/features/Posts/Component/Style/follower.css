@@ -1,0 +1,122 @@
+.connections-page {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #fff;
+}
+.connections-page .followers-section,
+.connections-page .following-section {
+  flex: 1;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  border: 1px solid #333;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
+.connections-page .followers-section:hover,
+.connections-page .following-section:hover {
+  transform: translateY(-2px);
+}
+.connections-page .followers-section h2,
+.connections-page .following-section h2 {
+  margin-bottom: 1rem;
+  color: #fff;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+.connections-page .followers-section .user-row,
+.connections-page .following-section .user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #333;
+}
+.connections-page .followers-section .user-row:last-child,
+.connections-page .following-section .user-row:last-child {
+  border-bottom: none;
+}
+.connections-page .followers-section .user-row .user-profile,
+.connections-page .following-section .user-row .user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.connections-page .followers-section .user-row .user-profile .profile-image,
+.connections-page .following-section .user-row .user-profile .profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  border: 2px solid #fff;
+}
+.connections-page .followers-section .user-row .user-profile .username,
+.connections-page .following-section .user-row .user-profile .username {
+  font-weight: bold;
+  color: #fff;
+}
+.connections-page .followers-section .user-row .unfollow-btn,
+.connections-page .following-section .user-row .unfollow-btn {
+  padding: 0.4rem 0.8rem;
+  width: 5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.connections-page .followers-section .user-row .unfollow-btn.follow-btn,
+.connections-page .following-section .user-row .unfollow-btn.follow-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
+.connections-page .followers-section .user-row .unfollow-btn.follow-btn:hover,
+.connections-page .following-section .user-row .unfollow-btn.follow-btn:hover {
+  background-color: #45a049;
+}
+.connections-page .followers-section .user-row .unfollow-btn.unfollow-btn,
+.connections-page .following-section .user-row .unfollow-btn.unfollow-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+.connections-page .followers-section .user-row .unfollow-btn.unfollow-btn:hover,
+.connections-page .following-section .user-row .unfollow-btn.unfollow-btn:hover {
+  background-color: #e53935;
+}
+.connections-page .followers-section .loading,
+.connections-page .following-section .loading {
+  color: #aaa;
+  font-style: italic;
+}
+.connections-page .followers-section .empty,
+.connections-page .following-section .empty {
+  color: #777;
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .connections-page {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .connections-page .followers-section,
+  .connections-page .following-section {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .connections-page {
+    padding: 0.5rem;
+  }
+  .connections-page .followers-section,
+  .connections-page .following-section {
+    padding: 1rem;
+  }
+}/*# sourceMappingURL=follower.css.map */
