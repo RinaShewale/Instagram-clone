@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const api = axios.create({
-    baseURL: "http://localhost:3000/api/auth",
+    baseURL: "https://instagram-clone-1-s69s.onrender.com/api/auth",
     withCredentials:true
 })
 
@@ -48,12 +48,3 @@ export async function getme() {
 }
 
 
-export const fetchUserProfile = async (username) => {
-  try {
-    const res = await axios.get(`http://localhost:3000/api/users/${username}`);
-    return res.data;
-  } catch (err) {
-    console.error("Error fetching user profile:", err);
-    throw err;
-  }
-};
