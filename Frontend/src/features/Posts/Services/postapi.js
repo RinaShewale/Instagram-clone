@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://instagram-clone-2-ph8a.onrender.com/api",
+  baseURL: "http://localhost:3000/api",
   withCredentials: true // must for sending cookies
 });
 
