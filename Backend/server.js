@@ -8,11 +8,11 @@ const app = require("./src/app");
 connectToDb();
 
 // Serve React build folder
-app.use(express.static(path.join(__dirname, "Frontend/dist")));
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
 // React Router fallback
 app.get("*name", (req, res) => {
-  res.sendFile(path.join(__dirname, "Frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
