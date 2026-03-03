@@ -3,20 +3,17 @@ const express = require("express");
 const path = require("path");
 const connectToDb = require("./src/config/database");
 
-// Import your backend app (API routes)
-const app = require("./src/routes/app");
+// Import backend API routes
+const app = require("./src/app");
 
 // Connect to MongoDB
 connectToDb();
 
-// Serve frontend build (after Vite build)
-app.use(express.static(path.join(__dirname, "../Frontend/dist"))); // Vite builds to dist
+// Serve React frontend (Vite build folder)
+app.use(express.static(path.join(__dirname, "../Frontend/dist"))); // adjust path if needed
 
-// API routes are already in your app.js
-// e.g., app.use("/api/auth", authRouter) inside app.js
-
-// Fallback for React Router
-app.get("*", (req, res) => {
+// Fallback for React Router (works on Node 24+)
+app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"));
 });
 
