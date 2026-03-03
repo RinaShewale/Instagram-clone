@@ -35,7 +35,9 @@
     /* Menu button now top-right like Instagram */
     .mobile-menu-btn {
         top: 1rem;
-        right: 1rem; // moved from left:1rem to right:1rem
+        right: 1rem;
+        position: fixed;
+        z-index: 1000; // moved from left:1rem to right:1rem
     }
 
     .feed.menu-open .feature {
@@ -231,11 +233,31 @@
     .feedpage {
         padding: 1rem;
 
-        .mobile-menu-btn,
-        .mobile-create-btn {
+        .mobile-menu-btn {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .mobile-create-btn {
+            display: flex;
+            /* mobile view sathi */
+            position: fixed;
+            bottom: 41.5rem;
+            right: 4.5rem;
+            /* adjust screen right */
+            z-index: 1500;
+            /* sidebar / feed var show honar */
+            width: 50px;
+            height: 50px;
+            font-size: 2.5rem;
+            border-radius: 50%;
+            background-color: #ff5a5f;
+            color: #fff;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Hide sidebar by default */
@@ -286,11 +308,23 @@
                 left: 0;
                 top: 0;
                 margin-bottom: 1.5rem;
-            }
 
+
+                  .btn {
+                margin-top: 15rem;
+
+                button {
+                    width: 10vw;
+                    padding: 1rem 0.5rem;
+                    background-color: #2e2e2e; // dark button
+                    color: #fff;
+                }
+            }
+        }
             .posts {
                 width: 100%;
             }
+
         }
 
 

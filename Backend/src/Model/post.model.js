@@ -9,7 +9,8 @@ const postschema = new mongoose.Schema({
 
     imgURI: {
         type: String,
-        require: [true, "imgURI is required for creating post"]
+        require: [true,
+             "imgURI is required for creating post"]
     },
 
     user: {

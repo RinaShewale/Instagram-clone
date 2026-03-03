@@ -6,6 +6,6 @@ const authrouter = express.Router()
 
 authrouter.post("/register",authcontroller.registercontroller)
 authrouter.post("/login", authcontroller.logincontroller)
-authrouter.post("/get-me", identifyUser, authcontroller.getmecontroller)
+authrouter.get("/get-me", identifyUser, authcontroller.getmecontroller)
 
 module.exports = authrouter 

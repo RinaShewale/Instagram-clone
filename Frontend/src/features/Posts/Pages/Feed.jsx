@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
 
-    const { user, handleLogout } = useContext(Authcontext);
+    const { user, handleLogout , authLoading} = useContext(Authcontext);
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -19,18 +19,32 @@ const Feed = () => {
         navigate("/login");  // redirect to login
     };
 
-      const handleCreatePost = () => {
+    const handleCreatePost = () => {
         navigate("/createpost"); // go to create post page
     };
 
 
 
     const { feed, handlegetfeed, loading, handlelike, handleunlike } = usepost()
+
     useEffect(() => {
-        handlegetfeed()
-    }, [])
-    if (loading || !feed) {
-        return (<main><h1>Feed is loading</h1></main>)
+        handlegetfeed();
+    }, []);
+
+    // ✅ Only redirect after auth check
+    useEffect(() => {
+        if (!authLoading && !user) {
+            navigate("/login");
+        }
+    }, [authLoading, user, navigate]);
+
+    // ✅ Show loader while auth check is running
+    if (authLoading || !user) {
+        return (
+            <main>
+                <h1>Checking login status...</h1>
+            </main>
+        );
     }
 
     if (!feed || feed.length === 0) {
@@ -54,7 +68,7 @@ const Feed = () => {
             <Nav />
             <main className='feedpage'>
                 {/* Mobile menu button */}
-                <button className="mobile-menu-btn"   onClick={() => setMenuOpen(!menuOpen)}>☰</button>
+                <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
 
                 {/* Mobile create post button */}
                 <button onClick={handleCreatePost} className="mobile-create-btn">+</button>
