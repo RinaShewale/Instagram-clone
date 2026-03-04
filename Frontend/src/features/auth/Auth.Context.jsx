@@ -7,7 +7,7 @@ export const Authcontext = createContext();
 
 export function Authprovider({ children }) {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);       // for login/register actions
+    const [loading, setLoading] = useState(true);       // for login/register actions
     const [authLoading, setAuthLoading] = useState(true); // for initial getme() check
 
     // Login function
