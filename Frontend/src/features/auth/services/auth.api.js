@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "/api/auth",
+  baseURL: "https://instagram-clone-1-npzy.onrender.com/api/auth",
   withCredentials: true
 });
 

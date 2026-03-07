@@ -1,9 +1,22 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: "https://instagram-clone-1-npzy.onrender.com/api",
   withCredentials: true // must for sending cookies
 });
+
+
+// 🔐 Token interceptor
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
 
 // -----------------------------
 // FEED / POST APIs

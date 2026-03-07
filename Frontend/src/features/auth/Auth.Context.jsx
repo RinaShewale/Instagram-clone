@@ -1,81 +1,123 @@
 // src/features/auth/Auth.Context.jsx
-import { createContext, useState, useEffect } from "react";
-import { login, register, getme } from "./services/auth.api";
 
-// ✅ Capitalized context name (convention)
+import { createContext, useState, useEffect } from "react";
+import { login, register } from "./services/auth.api";
+
 export const Authcontext = createContext();
 
 export function Authprovider({ children }) {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);       // for login/register actions
-    const [authLoading, setAuthLoading] = useState(true); // for initial getme() check
 
-    // Login function
-    const handleLogin = async (username, password) => {
-        setLoading(true);
-        try {
-            const response = await login(username, password);
-            setUser(response.user);
-            localStorage.setItem("user", JSON.stringify(response.user));
-        } catch (err) {
-            console.log("Login Error:", err);
-            setUser(null);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
 
-    // Register function
-    const handleRegister = async (username, email, password) => {
-        setLoading(true);
-        try {
-            await register(username, email, password);
-            const me = await getme();
-            setUser(me);
-            return me;
-        } catch (err) {
-            console.log("Register Error:", err);
-            setUser(null);
-        } finally {
-            setLoading(false);
-        }
-    };
+  // -----------------------------
+  // LOGIN
+  // -----------------------------
+  const handleLogin = async (username, password) => {
 
-    // Logout function
-    const handleLogout = () => {
-        setUser(null);
-        localStorage.removeItem("user");
-        // optionally call backend to clear cookies
-    };
+    setLoading(true);
 
-    // Fetch user on mount (check if already logged in)
-    useEffect(() => {
-        (async () => {
-            try {
-                const me = await getme();
-                setUser(me);
-            } catch {
-                setUser(null);
-            } finally {
-                setAuthLoading(false); // done checking auth
-            }
-        })();
-    }, []);
+    try {
 
-    return (
-        <Authcontext.Provider
-            value={{
-                user,
-                loading,
-                authLoading, // expose authLoading for pages
-                handleLogin,
-                handleRegister,
-                handleLogout,
-                setUser,
-                setAuthLoading
-            }}
-        >
-            {children}
-        </Authcontext.Provider>
-    );
+      const response = await login(username, password);
+
+      setUser(response.user);
+
+      localStorage.setItem("user", JSON.stringify(response.user));
+      localStorage.setItem("token", response.token);
+
+    } catch (err) {
+
+      console.log("Login Error:", err);
+      setUser(null);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
+
+  // -----------------------------
+  // REGISTER
+  // -----------------------------
+  const handleRegister = async (username, email, password) => {
+
+    setLoading(true);
+
+    try {
+
+      const response = await register(username, email, password);
+
+      setUser(response.user);
+
+      localStorage.setItem("user", JSON.stringify(response.user));
+      localStorage.setItem("token", response.token);
+
+      return response.user;
+
+    } catch (err) {
+
+      console.log("Register Error:", err);
+      setUser(null);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
+
+  // -----------------------------
+  // LOGOUT
+  // -----------------------------
+  const handleLogout = () => {
+
+    setUser(null);
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+  };
+
+  // -----------------------------
+  // CHECK USER ON APP START
+  // -----------------------------
+  useEffect(() => {
+
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+
+      setUser(JSON.parse(storedUser));
+
+    } else {
+
+      setUser(null);
+
+    }
+
+    setAuthLoading(false);
+
+  }, []);
+
+  return (
+
+    <Authcontext.Provider
+      value={{
+        user,
+        loading,
+        authLoading,
+        handleLogin,
+        handleRegister,
+        handleLogout
+      }}
+    >
+
+      {children}
+
+    </Authcontext.Provider>
+
+  );
 }

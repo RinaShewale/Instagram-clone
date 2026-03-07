@@ -9,7 +9,13 @@ import Follower from './features/Posts/Pages/Follower'
 import { Authcontext } from './features/auth/Auth.Context'
 
 function AppRouter() {
-    const { user } = useContext(Authcontext);
+    const { user, authLoading } = useContext(Authcontext);
+
+
+    if (authLoading) {
+        return <h1>Loading...</h1>;
+    }
+
     return (
         <BrowserRouter>
 
@@ -24,9 +30,9 @@ function AppRouter() {
                 <Route path="/createpost" element={user ? <Createpost /> : <Navigate to="/login" />} />
                 <Route path="/connections" element={user ? <Follower /> : <Navigate to="/login" />} />
                 <Route path="/saved" element={user ? <Savedpost /> : <Navigate to="/login" />} />
-                
 
-         
+
+
 
                 {/* Catch-all */}
                 <Route path="*" element={<Navigate to={user ? "/feed" : "/login"} />} />
